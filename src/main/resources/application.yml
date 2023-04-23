@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: "qa"
+---
+spring:
+  profiles: dev
+server:
+  port: 8080
+---
+spring:
+  profiles: qa
+server:
+  port: 8081

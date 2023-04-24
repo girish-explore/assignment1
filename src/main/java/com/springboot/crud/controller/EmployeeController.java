@@ -2,6 +2,8 @@ package com.springboot.crud.controller;
 
 import com.springboot.crud.entity.Employee;
 import com.springboot.crud.service.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,8 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(Employee.class);
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -32,6 +36,7 @@ public class EmployeeController {
     @GetMapping(value = "{id}",produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id){
         Employee Employee = employeeService.getEmployeeById(id);
+        LOGGER.info("Employee Retrieved with ID: "+id);
         return new ResponseEntity<>(Employee, HttpStatus.OK);
     }
 
